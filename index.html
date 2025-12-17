@@ -1,0 +1,328 @@
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KittyBook AI - Rekomendasi Buku</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cat-bg">
+        <div class="cat cat1">🐱</div>
+        <div class="cat cat2">🐾</div>
+        <div class="cat cat3">😸</div>
+        <div class="cat cat4">📚</div>
+        <div class="cat cat5">🐈</div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cat"></i>
+                </div>
+                <div>
+                    <h1>KittyBook <span class="ai-badge">AI</span></h1>
+                    <p class="tagline">Chatbot kucing yang pintar memberikan rekomendasi buku! 😸📚</p>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="stat">
+                    <i class="fas fa-book"></i>
+                    <span>50+ Buku</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-paw"></i>
+                    <span>Rekomendasi Terpersonalisasi</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <aside class="sidebar">
+                <div class="profile-card">
+                    <div class="profile-img">
+                        <i class="fas fa-cat"></i>
+                    </div>
+                    <h3>Kitty AI</h3>
+                    <p>Asisten Buku Berbulu 🐱</p>
+                    <div class="status online">
+                        <i class="fas fa-circle"></i> Online
+                    </div>
+                </div>
+
+                <div class="cat-facts">
+                    <h4><i class="fas fa-paw"></i> Fakta Kucing & Buku</h4>
+                    <div class="fact">
+                        <p>Kucing suka duduk di buku yang sedang dibaca! 📖</p>
+                    </div>
+                    <div class="fact">
+                        <p>Dengkur kucing adalah suara terbaik saat membaca</p>
+                    </div>
+                </div>
+
+                <div class="quick-genres">
+                    <h4><i class="fas fa-tags"></i> Genre Populer</h4>
+                    <div class="genre-tags">
+                        <span class="genre-tag" onclick="sendSuggestion('Fantasi')">
+                            <i class="fas fa-dragon"></i> Fantasi
+                        </span>
+                        <span class="genre-tag" onclick="sendSuggestion('Petualangan')">
+                            <i class="fas fa-hiking"></i> Petualangan
+                        </span>
+                        <span class="genre-tag" onclick="sendSuggestion('Misteri')">
+                            <i class="fas fa-search"></i> Misteri
+                        </span>
+                        <span class="genre-tag" onclick="sendSuggestion('Romantis')">
+                            <i class="fas fa-heart"></i> Romantis
+                        </span>
+                        <span class="genre-tag" onclick="sendSuggestion('Sci-Fi')">
+                            <i class="fas fa-rocket"></i> Sci-Fi
+                        </span>
+                        <span class="genre-tag" onclick="sendSuggestion('Komedi')">
+                            <i class="fas fa-laugh"></i> Komedi
+                        </span>
+                    </div>
+                </div>
+
+                <div class="cat-tip">
+                    <h4><i class="fas fa-lightbulb"></i> Tips dari Kitty</h4>
+                    <p>Punya mood tertentu? Coba tanya:</p>
+                    <button class="tip-btn" onclick="sendSuggestion('Saya sedih, ada buku yang menghibur?')">
+                        <i class="fas fa-sad-tear"></i> Sedih
+                    </button>
+                    <button class="tip-btn" onclick="sendSuggestion('Rekomendasi buku untuk motivasi')">
+                        <i class="fas fa-bolt"></i> Butuh motivasi
+                    </button>
+                    <button class="tip-btn" onclick="sendSuggestion('Buku ringan untuk santai')">
+                        <i class="fas fa-coffee"></i> Mau santai
+                    </button>
+                </div>
+            </aside>
+
+            <div class="chat-area">
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <div class="ai-avatar">
+                            <i class="fas fa-cat"></i>
+                        </div>
+                        <div>
+                            <h2>Kitty AI Assistant</h2>
+                            <p class="subtitle">Meow! Saya siap membantu menemukan buku yang tepat untukmu!</p>
+                        </div>
+                    </div>
+                    <div class="chat-controls">
+                        <button class="control-btn" onclick="clearChat()" title="Chat baru">
+                            <i class="fas fa-plus"></i> Chat Baru
+                        </button>
+                        <button class="control-btn" onclick="showExamples()" title="Contoh pertanyaan">
+                            <i class="fas fa-question"></i> Contoh
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Pesan akan dimuat di sini oleh JavaScript -->
+                    <div class="message ai-message welcome-message">
+                        <div class="message-header">
+                            <i class="fas fa-cat"></i>
+                            <strong>Kitty AI</strong>
+                            <span class="message-time">Baru saja</span>
+                        </div>
+                        <div class="message-content">
+                            <p>😸 <strong>Meow! Halo!</strong> Saya Kitty AI, chatbot kucing yang sangat mengerti buku!</p>
+                            <p>📚 <strong>Apa yang bisa saya bantu?</strong></p>
+                            <ul>
+                                <li>🐾 Rekomendasi buku berdasarkan genre favoritmu</li>
+                                <li>😻 Ngobrol natural tentang buku apa pun</li>
+                                <li>🌟 Beri saran buku sesuai mood-mu</li>
+                                <li>🎯 Bantu temukan bacaan yang sempurna untukmu!</li>
+                            </ul>
+                            <p>Coba tanyakan saya hal seperti:</p>
+                            <div class="suggestions">
+                                <button class="suggestion-btn" onclick="sendSuggestion('Rekomendasikan buku fantasi terbaik')">
+                                    "Rekomendasikan buku fantasi terbaik"
+                                </button>
+                                <button class="suggestion-btn" onclick="sendSuggestion('Saya suka Harry Potter, ada rekomendasi serupa?')">
+                                    "Saya suka Harry Potter, ada rekomendasi serupa?"
+                                </button>
+                                <button class="suggestion-btn" onclick="sendSuggestion('Buku apa yang bagus untuk pemula?')">
+                                    "Buku apa yang bagus untuk pemula?"
+                                </button>
+                                <button class="suggestion-btn" onclick="sendSuggestion('Ceritakan tentang penulis J.K. Rowling')">
+                                    "Ceritakan tentang penulis J.K. Rowling"
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <div class="input-container">
+                        <div class="input-wrapper">
+                            <textarea 
+                                id="userInput" 
+                                placeholder="Tanyakan apa pun tentang buku kepada Kitty AI... (Contoh: 'Rekomendasikan buku romantis yang seru!')"
+                                rows="1"
+                                autocomplete="off"
+                            ></textarea>
+                            <div class="input-actions">
+                                <button class="action-btn cat-btn" title="Kirim pesan" onclick="sendMessage()">
+                                    <i class="fas fa-paw"></i> Kirim
+                                </button>
+                            </div>
+                        </div>
+                        <div class="input-hint">
+                            <i class="fas fa-info-circle"></i>
+                            Kitty AI dapat mengobrol secara alami seperti teman! Coba tanyakan apa pun tentang buku 😸
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="right-sidebar">
+                <div class="featured-book">
+                    <h3><i class="fas fa-crown"></i> Rekomendasi Spesial Hari Ini</h3>
+                    <div class="book-card featured">
+                        <div class="book-cover">
+                            <div class="cover-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <h4>The Travelling Cat Chronicles</h4>
+                            <p class="book-author">Hiro Arikawa</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.6/5.0</span>
+                            </div>
+                            <p class="book-desc">Kisah perjalanan kucing bernama Nana dan pemiliknya. Menghangatkan hati dan penuh pelajaran hidup!</p>
+                            <button class="btn-ask" onclick="sendSuggestion('Ceritakan lebih tentang buku The Travelling Cat Chronicles')">
+                                <i class="fas fa-question"></i> Tanya Kitty AI
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cat-quotes">
+                    <h3><i class="fas fa-comment"></i> Kutipan Kucing & Buku</h3>
+                    <div class="quote">
+                        <p>"Dunia akan lebih baik jika setiap orang membaca buku sambil memeluk kucing."</p>
+                        <span class="quote-author">– Kitty AI</span>
+                    </div>
+                    <div class="quote">
+                        <p>"Kucing dan buku: kombinasi sempurna untuk hari yang nyaman."</p>
+                        <span class="quote-author">– Setiap Pencinta Buku</span>
+                    </div>
+                </div>
+
+                <div class="ai-stats">
+                    <h3><i class="fas fa-chart-line"></i> Statistik Kitty AI</h3>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <i class="fas fa-comments"></i>
+                            <div>
+                                <h4 id="messagesCount">0</h4>
+                                <p>Pesan</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-book-open"></i>
+                            <div>
+                                <h4 id="booksRecommended">0</h4>
+                                <p>Buku Direkomendasikan</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-smile"></i>
+                            <div>
+                                <h4 id="happyUsers">100%</h4>
+                                <p>Pengguna Senang</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-paw"></i>
+                            <div>
+                                <h4 id="catPurrs">∞</h4>
+                                <p>Dengkur Dikirim</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-cat"></i>
+                    <h3>KittyBook AI</h3>
+                </div>
+                <p>😸 Dibuat dengan cinta oleh kucing-kucing yang suka membaca buku</p>
+                <p class="footer-note">Rekomendasi buku sempurna sejak 2024 • Meow! 🐾</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal Contoh Pertanyaan -->
+    <div class="modal" id="examplesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-lightbulb"></i> Contoh Pertanyaan untuk Kitty AI</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="example-category">
+                    <h4>📚 Rekomendasi Buku</h4>
+                    <div class="examples">
+                        <button class="example-btn" onclick="sendSuggestion('Rekomendasikan buku fantasi terbaik')">
+                            "Rekomendasikan buku fantasi terbaik"
+                        </button>
+                        <button class="example-btn" onclick="sendSuggestion('Buku romantis yang bagus untuk remaja')">
+                            "Buku romantis yang bagus untuk remaja"
+                        </button>
+                        <button class="example-btn" onclick="sendSuggestion('Novel misteri dengan plot twist terbaik')">
+                            "Novel misteri dengan plot twist terbaik"
+                        </button>
+                    </div>
+                </div>
+                <div class="example-category">
+                    <h4>😊 Berdasarkan Mood</h4>
+                    <div class="examples">
+                        <button class="example-btn" onclick="sendSuggestion('Saya lagi sedih, ada buku yang menghibur?')">
+                            "Saya lagi sedih, ada buku yang menghibur?"
+                        </button>
+                        <button class="example-btn" onclick="sendSuggestion('Buku motivasi untuk bangkit lagi')">
+                            "Buku motivasi untuk bangkit lagi"
+                        </button>
+                        <button class="example-btn" onclick="sendSuggestion('Novel ringan untuk weekend santai')">
+                            "Novel ringan untuk weekend santai"
+                        </button>
+                    </div>
+                </div>
+                <div class="example-category">
+                    <h4>🔍 Informasi Buku</h4>
+                    <div class="examples">
+                        <button class="example-btn" onclick="sendSuggestion('Ceritakan tentang buku Harry Potter')">
+                            "Ceritakan tentang buku Harry Potter"
+                        </button>
+                        <button class="example-btn" onclick="sendSuggestion('Siapa penulis The Hobbit?')">
+                            "Siapa penulis The Hobbit?"
+                        </button>
+                        <button class="example-btn" onclick="sendSuggestion('Apa buku terbaik tahun 2023?')">
+                            "Apa buku terbaik tahun 2023?"
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
